@@ -1,0 +1,178 @@
+{% extends 'base.html' %} {% load static %} {% load crispy_forms_tags %} {% block content %}
+
+<div>{% include 'sidebar.html' %}</div>
+
+<div class="flex-container-ticket">
+	<div class="box">
+		<div class="account-tickets">
+			<div class="subtitle" id="ticket-subtitle">
+				<div class="left-ticket"><h4>{{ticket.title}}</h4></div>
+				<div class="right-ticket"><h4>id {{ticket.id}}</h4></div>
+			</div>
+			<hr />
+			<div class="main-text-dash">
+				<div class="ticket-column">
+					<div>
+						<div class="ticket-box">
+							<div class="column">
+								<h6>Submitted by</h6>
+
+								<p>{{ticket.author}}</p>
+
+								<div class="ticket-assigned">
+									<h6>Assigned User</h6>
+									<p>{{ticket.participants}}</p>
+								</div>
+
+								<h6>Date Submitted</h6>
+								<p>{{ticket.created}}</p>
+								<h6>Date Updated</h6>
+								{% if ticket.created != ticket.updated %}
+								<p>{{ticket.updated}}</p>
+								{% else %}
+								<p>No updates yet.</p>
+								{% endif %}
+							</div>
+							<div class="column">
+								<h6>Type</h6>
+								{% if ticket.type == 'Bug' %}
+						<p>
+							<td>
+								<div class="field-container">
+									<div class="colored-dot">
+										<div class="dot" id="bug"></div>
+										<div>{{ticket.type}}</div>
+									</div>
+								</div>
+							</td>
+						</p>
+						{% elif ticket.type == 'Feature' %}
+						<p>
+							<td>
+								<div class="field-container">
+									<div class="colored-dot">
+										<div class="dot" id="feature"></div>
+										<div>{{ticket.type}}</div>
+									</div>
+								</div>
+							</td>
+						</p>
+						{% elif ticket.type == 'Modify' %}
+						<p>
+							<td>
+								<div class="field-container">
+									<div class="colored-dot">
+										<div class="dot" id="modify"></div>
+										<div>{{ticket.type}}</div>
+									</div>
+								</div>
+							</td>
+						</p>
+						{% endif %}
+								<h6>Priority</h6>
+								{% if ticket.priority == 'High' %}
+								<p></p>
+								<div class="field-container">
+									<div class="colored-dot">
+										<div class="dot" id="high"></div>
+										<div>{{ticket.priority}}</div>
+									</div>
+								</div>
+
+								{% elif ticket.priority == 'Low' %}
+								<p></p>
+
+								<div class="field-container">
+									<div class="colored-dot">
+										<div class="dot" id="low"></div>
+										<div>{{ticket.priority}}</div>
+									</div>
+								</div>
+
+								{% endif %}
+								<h6>Status</h6>
+								<p>{% if ticket.status == 'Active' %}</p>
+
+								<div class="ticket-active">In Progress</div>
+								{% elif ticket.status == 'Complete' %}
+								<div class="ticket-complete">Complete</div>
+								{% elif ticket.status == 'Backlog' %}
+								<div class="ticket-backlog">Backlog</div>
+								{% endif %}
+								<h6>Attached File(s)</h6>
+								{% if ticket.attachment %}
+								<p>
+									<a class="ticket-link" href="{{ ticket.attachment.url }}"
+										>Open file</a
+									>
+								</p>
+								{% else %}
+								<p>None.</p>
+								{% endif %}
+							</div>
+						</div>
+					</div>
+					<hr style="width: 200px" />
+					<h5>Details</h5>
+					<p>{{ticket.description}}</p>
+					<h5>Comments</h5>
+					{% if ticket.comments %}
+					<p>{{ticket.comments}}</p>
+					{% else %}
+					<p>No comments yet.</p>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="box">
+		<div class="ticket-update">
+			<div class="ticket-column">
+				<div class="subtitle">
+					<h4>Update Ticket</h4>
+				</div>
+				<hr />
+				{% if ticket.status != 'Backlog' %}
+				<div class="ticket-form">
+					<form method="post" id="form-update">
+						{% csrf_token %} {{ form_update|crispy }}
+						<button class="update-button" type="submit" name="form-update">
+							Update Ticket
+						</button>
+					</form>
+				</div>
+				{% else %}
+				<div class="ticket-form">
+					<form method="post" id="form-initiate">
+						{% csrf_token %} {{ form_initiate|crispy }}
+						<button class="update-button" type="submit" name="form-initiate">
+							Initiate Project
+						</button>
+					</form>
+				</div>
+				{% endif %}
+				<div class="ticket-form">
+					<p style="padding-top: 20px; text-align: right">
+						Click <a class="ticket-link" href="{% url 'ticket-delete' ticket.id %}">here</a> to
+						delete this ticket.
+					</p>
+				</div>
+
+				<div class="messages">
+					{% if messages %}
+					<ul>
+						{% for message in messages %}
+						<li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+							{{ message }}
+						</li>
+						{% endfor %}
+					</ul>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+
+	{% endblock %}
+</div>

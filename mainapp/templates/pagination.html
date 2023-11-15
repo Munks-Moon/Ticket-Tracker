@@ -1,0 +1,14 @@
+<br>
+<div class="pagination">
+{% if ticket_page.has_previous %}
+
+	<a class="page-links" href="?page=1">&laquo First</a>
+	<a class="page-links" href="?page={{ticket_page.previous_page_number}}"></a>
+	{% endif %} 
+    <p>Page {{ticket_page.number}} of {{ticket_page.paginator.num_pages}}</p>
+	{% if ticket_page.has_next %}
+	<a class="page-links" href="?page={{ticket_page.next_page_number}}">Next</a>
+	<a class="page-links" href="?page={{ticket_page.paginator.num_pages }}">Last &raquo</a>
+
+{% endif %}
+</div>

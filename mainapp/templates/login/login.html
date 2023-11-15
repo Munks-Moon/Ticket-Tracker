@@ -1,0 +1,29 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% block content %}
+<div class="messages-login">
+	{% if messages %}
+	<ul>
+		{% for message in messages %}
+		<li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+			{{ message }}
+		</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+</div>
+<div id="login-box">
+	<div id="login-text">
+		<h3 id="login-welcome"><strong>Please login</strong></h3>
+		<h6>
+			To access this site, please register an account by contacting your
+			supervisor
+		</h6>
+		<br />
+		<table id="login-fields">
+			<form method="post">
+				{{ form|crispy }} {% csrf_token %}
+				<p><input class="login-button" type="submit" value="Login" /></p>
+			</form>
+		</table>
+	</div>
+</div>
+{% endblock %}

@@ -1,0 +1,94 @@
+{% load static %}
+<div class="main-text-dash">
+	<table style="width: 100%" class="bordered-table">
+		<thead>
+			<tr class="list-headings">
+				<p><th>Project</th></p>
+				<p><th>id</th></p>
+				<p><th>Date</th></p>
+				<p><th>Type</th></p>
+				<p><th>Priority</th></p>
+				<p><th>Status</th></p>
+			</tr>
+		</thead>
+		{% for ticket in latest_tickets %}
+
+		<tr>
+			<p>
+				<td>
+					<a class="ticket-link" href="{% url 'ticket-room' ticket.id %}"
+						>{{ticket.title}}</a
+					>
+				</td>
+			</p>
+			<p><td>{{ticket.id}}</td></p>
+			<p><td>{{ticket.created|date:"F d"}}</td></p>
+			{% if ticket.type == 'Bug' %}
+			<p>
+				<td>
+					<div class="field-container">
+						<div class="colored-dot">
+							<div class="dot" id="bug"></div>
+							<div>{{ticket.type}}</div>
+						</div>
+					</div>
+				</td>
+			</p>
+			{% elif ticket.type == 'Feature' %}
+			<p>
+				<td>
+					<div class="field-container">
+						<div class="colored-dot">
+							<div class="dot" id="feature"></div>
+							<div>{{ticket.type}}</div>
+						</div>
+					</div>
+				</td>
+			</p>
+			{% elif ticket.type == 'Modify' %}
+			<p>
+				<td>
+					<div class="field-container">
+						<div class="colored-dot">
+							<div class="dot" id="modify"></div>
+							<div>{{ticket.type}}</div>
+						</div>
+					</div>
+				</td>
+			</p>
+			{% endif %} {% if ticket.priority == 'High' %}
+			<p>
+				<td>
+					<div class="field-container">
+						<div class="colored-dot">
+							<div class="dot" id="high"></div>
+							<div>{{ticket.priority}}</div>
+						</div>
+					</div>
+				</td>
+			</p>
+			{% elif ticket.priority == 'Low' %}
+			<p>
+				<td>
+					<div class="field-container">
+						<div class="colored-dot">
+							<div class="dot" id="low"></div>
+							<div>{{ticket.priority}}</div>
+						</div>
+					</div>
+				</td>
+			</p>
+			{% endif %}
+			<p>
+				{% if ticket.status == 'Active' %}
+				<td><div class="ticket-active">In Progress</div></td>
+				{% elif ticket.status == 'Complete' %}
+				<td><div class="ticket-complete">Complete</div></td>
+				{% elif ticket.status == 'Backlog' %}
+				<td><div class="ticket-backlog">Backlog</div></td>
+				{% endif %}
+			</p>
+		</tr>
+		{% include 'ticket_details.html' %} {% endfor %}
+	</table>
+</div>

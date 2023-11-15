@@ -1,0 +1,41 @@
+{% extends 'base.html' %} {% load static%} {% block content %}
+<div>{% include 'sidebar.html' %}</div>
+<div class="flex-container">
+	<div class="box">
+		<div>
+			<h4 class="subtitle">Sent Messages</h4>
+			<div class="main-text-dash">
+				
+				<table class="bordered-table">
+					<tr class="list-headings">
+						<p><th>To</th></p>
+						<p><th>Subject</th></p>
+						<p><th>Sent</th></p>
+						<p><th>Date</th></p>
+					</tr>
+					{% for message in sent_messages %}
+					<tr>
+						<p><td>{{message.recipient}}</td></p>
+						<p>
+							<td>
+								<a class="ticket-link" href="{% url 'message' message.id %}"
+										>{{message.subject}}</a
+									>
+							</td>
+						</p>
+						<p>
+							<td>{{message.sent_at|timesince}}</td>
+						</p>
+						<p>
+							<td>{{message.sent_at}}</td>
+						</p>
+					</tr>
+					{% endfor %}
+				</table>
+                <br>
+                <p><a class="ticket-link" href="{% url 'account' %}">Go to Inbox</a></p>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

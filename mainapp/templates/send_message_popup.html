@@ -1,0 +1,21 @@
+{% load crispy_forms_tags %}
+
+<div class="popup" id="message-popup">
+	<div class="popup-details">
+		<h4 class="subtitle">Send Message</h4>
+		<hr />
+		<div id="ticket-form">
+			<form method="POST" class="form-box">
+				{% csrf_token %} {{form|crispy}}
+				<div style="padding-top: 10px">
+					<input class="send-button" type="submit" value="Send" />
+				</div>
+			</form>
+		</div>
+		
+		<button class="close-button" type="button" onclick="closePopup('message')">
+			Close
+		</button>
+	</div>
+</div>
+

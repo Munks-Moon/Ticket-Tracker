@@ -1,0 +1,43 @@
+{% load static %}
+<div class="sidebar">
+	<div class="sidebar-content">
+		<div style="text-align: center">
+			<h6>Welcome {{request.user}}!</h6>
+			<hr />
+		</div>
+		<div>
+			<a href="{% url 'dashboard' %}"
+				><img
+					src="{% static 'images/dashboard-image.png' %}"
+					style="height: 20px; padding-right: 10px" />Dashboard</a
+			>
+		</div>
+
+		<a href="{% url 'all-tickets' %}"
+			><img
+				src="{% static 'images/tickets.png' %}"
+				style="height: 20px; padding-right: 10px" />All Tickets</a
+		>
+		{% if user.is_authenticated and user.is_staff %}
+		<a href="{% url 'ticket-submission'%}?author={{user.id}}"
+			><img
+				src="{% static 'images/submit-image.png' %}"
+				style="height: 20px; padding-right: 10px" />Submit Ticket</a
+		>
+		{% endif %}
+		<hr />
+		<a href="{% url 'account' %}" style="padding-left: 30px">Your Account</a>
+
+		<br />
+		{% if request.user.is_authenticated %}
+		<div style="margin-left: 20px">
+			<button class="logout-button">
+				<a href="{% url 'logout' %}" style="color: white; padding-left: 20px"
+					>Logout</a
+				>
+			</button>
+		</div>
+	</div>
+
+	{% endif %}
+</div>

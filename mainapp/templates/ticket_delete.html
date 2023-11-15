@@ -1,0 +1,39 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div>{% include 'sidebar.html' %}</div>
+<div class="flex-container-message">
+	<div class="box">
+		<div class="account-tickets">
+			<h4 class="subtitle">Ticket Deletion</h4>
+			<hr />
+			<div class="main-text-dash">
+				<div class="ticket-column">
+					<div class="ticket-row">
+						<h6>Project</h6>
+						<p>{{ticket.title}}</p>
+					</div>
+					<div class="ticket-row">
+						<h6>Submitted by</h6>
+						<p>{{ticket.author}}</p>
+					</div>
+					<div class="ticket-row">
+						<h6>Date Submitted</h6>
+						<p>{{ticket.created}}</p>
+					</div>
+					<hr>
+					<h6>Are you sure you want to delete this ticket?</h6>
+					<form method="post">
+						{% csrf_token %}
+						<input class="delete-button" type="submit" value="Delete" />
+					</form>
+					<p style="padding-top: 20px">
+						<a class="ticket-link" href="{% url 'ticket-room' ticket.id %}"
+							>Cancel</a
+						>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div>{% include 'sidebar.html' %}</div>
+<div class="flex-container-message">
+	<div class="box">
+		<div class="account-tickets">
+			<h4 class="subtitle">{{message.subject}}</h4>
+			<hr />
+			<div class="main-text-dash">
+				<div class="message-column">
+					
+					<div class="message-row">
+						<h6>Sent by</h6>
+						<p>{{message.sender}}</p>
+					</div>
+					<div class="message-row">
+						<h6>Date Recieved</h6>
+						<p>{{message.sent_at}}</p>
+					</div>
+					<hr />
+					<p>{{message.body}}</p>
+					<p>
+						<a class="ticket-link" href="{% url 'account' %}">Go to Inbox</a>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
