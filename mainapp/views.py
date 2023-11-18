@@ -262,3 +262,19 @@ def logoutUser(request):
     logout(request)
     return redirect('login')
 
+# Demo ----
+
+def demo_login(request):
+
+    demo_username = 'demo_user'
+    demo_password = 'demopassword'
+
+    if request.method == 'POST':
+        user = authenticate(request, username=demo_username, password=demo_password)
+        if user is not None:
+            login(request, user)
+
+            return redirect('dashboard')
+        else:
+
+            return redirect('login')

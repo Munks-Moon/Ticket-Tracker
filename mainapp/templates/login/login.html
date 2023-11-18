@@ -10,6 +10,13 @@
 	</ul>
 	{% endif %}
 </div>
+<div style="text-align: center">
+	<h3>Click here for demo version</h3>
+	<form method="post" action="{% url 'demo_login' %}">
+		{% csrf_token %}
+		<button type="submit" class="demo-button">Demo</button>
+	</form>
+</div>
 <div id="login-box">
 	<div id="login-text">
 		<h3 id="login-welcome"><strong>Please login</strong></h3>
