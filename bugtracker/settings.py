@@ -5,7 +5,7 @@ import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-r2!fopgmjnw$4xv7!&d+@3kk_3(ccrw@og^^%a=uyp4vpl!=-y'
+SECRET_KEY = 'r2!fopgmjnw$4xv7!&d+@3kk_3(ccrw@og^^%a=uyp4vpl!=-y'
 
 DEBUG = False
 
@@ -41,10 +41,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'bugtracker.urls'
 
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'mainapp/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -56,6 +58,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'bugtracker.wsgi.application'
 
