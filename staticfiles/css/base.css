@@ -12,6 +12,11 @@ h6 {
 	color: #d3d3d3;
 }
 
+hr {
+	z-index: 10;
+	position: relative;
+}
+
 /* Login Page */
 
 #login-box {
@@ -56,6 +61,8 @@ h6 {
 	font-family: "Libre Franklin", sans-serif;
 }
 
+
+
 .login-button:hover {
 	color: #818181;
 }
@@ -67,10 +74,21 @@ h6 {
 	cursor: pointer;
 	text-align: left;
 	width: 100px;
+	padding-left: 20px;
+	
 }
 
 .login-button a:hover {
 	color: #000000;
+}
+
+.logout-container {
+	margin-left: 20px;
+}
+
+.logout-container a {
+	color: white;
+	padding-left: 10px;
 }
 
 /* Header navigation */
@@ -183,7 +201,7 @@ td img:hover {
 }
 
 .main-text-dash {
-	padding-left: 40px;
+	padding-left: 10px;
 }
 
 .ticket-form {
@@ -447,6 +465,7 @@ td img:hover {
 	margin-left: 5%;
 	margin-right: 5%;
 	height: fit-content;
+	
 	border-radius: 5px;
 	padding: 20px;
 	padding-bottom: 30px;
@@ -471,6 +490,7 @@ td img:hover {
 
 .top-box {
 	order: 1;
+	display: flex;
 }
 
 .bottom-boxes {
@@ -607,7 +627,7 @@ td img:hover {
 	border: 1px solid #efefef;
 	border-radius: 5px;
 	width: fit-content;
-	padding: 2px;
+	/* padding: 2px; */
 	padding-left: 5px;
 	padding-right: 5px;
 	background-color: #efefef;
@@ -668,6 +688,7 @@ td img:hover {
 		padding-top: 0;
 		margin-top: 60px;
 		overflow-y: 0;
+		
 	}
 
 	.sidebar-content {
@@ -675,11 +696,22 @@ td img:hover {
 		justify-content: flex-start;
 		align-items: center;
 		padding: 10px;
+		text-align: center;
 	}
 
 	.sidebar-content a {
-		font-size: 0.8em;
+		font-size: 0.6em;
 	}
+
+	.welcome-sidebar {
+		display: none;
+	}
+
+	.logout-button {
+		width: 50px;
+		padding-left: 0px;
+	}
+
 
 	.flex-container {
 		font-size: 0.5em;
@@ -722,5 +754,9 @@ td img:hover {
 		margin-left: 10px;
 		margin-right: 10px;
 		width: 80%;
+	}
+
+	.bottom-boxes {
+		flex-direction: column;
 	}
 }
