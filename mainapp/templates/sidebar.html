@@ -1,7 +1,7 @@
 {% load static %}
 <div class="sidebar">
 	<div class="sidebar-content">
-		<div style="text-align: center">
+		<div class="welcome-sidebar" style="text-align: center">
 			<h6>Welcome {{request.user}}!</h6>
 			<hr />
 		</div>
@@ -30,11 +30,9 @@
 
 		<br />
 		{% if request.user.is_authenticated %}
-		<div style="margin-left: 20px">
+		<div class="logout-container">
 			<button class="logout-button">
-				<a href="{% url 'logout' %}" style="color: white; padding-left: 20px"
-					>Logout</a
-				>
+				<a href="{% url 'logout' %}" style="color: white;">Logout</a>
 			</button>
 		</div>
 	</div>

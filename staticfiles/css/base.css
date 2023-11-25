@@ -149,7 +149,6 @@ td img:hover {
 	font-size: large;
 }
 
-
 /* Ticket form */
 
 #id_description,
@@ -269,7 +268,6 @@ td img:hover {
 
 .ticket-column h6 {
 	font-weight: bold;
-	
 }
 
 .ticket-column p {
@@ -605,7 +603,7 @@ td img:hover {
 	background-color: #00a2ff;
 }
 
-.field-container {
+.tps-container {
 	border: 1px solid #efefef;
 	border-radius: 5px;
 	width: fit-content;
@@ -726,4 +724,3 @@ td img:hover {
 		width: 80%;
 	}
 }
-

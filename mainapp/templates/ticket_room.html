@@ -1,4 +1,5 @@
-{% extends 'base.html' %} {% load static %} {% load crispy_forms_tags %} {% block content %}
+{% extends 'base.html' %} {% load static %} {% load crispy_forms_tags %} {%
+block content %}
 
 <div>{% include 'sidebar.html' %}</div>
 
@@ -36,43 +37,43 @@
 							<div class="column">
 								<h6>Type</h6>
 								{% if ticket.type == 'Bug' %}
-						<p>
-							<td>
-								<div class="field-container">
-									<div class="colored-dot">
-										<div class="dot" id="bug"></div>
-										<div>{{ticket.type}}</div>
-									</div>
-								</div>
-							</td>
-						</p>
-						{% elif ticket.type == 'Feature' %}
-						<p>
-							<td>
-								<div class="field-container">
-									<div class="colored-dot">
-										<div class="dot" id="feature"></div>
-										<div>{{ticket.type}}</div>
-									</div>
-								</div>
-							</td>
-						</p>
-						{% elif ticket.type == 'Modify' %}
-						<p>
-							<td>
-								<div class="field-container">
-									<div class="colored-dot">
-										<div class="dot" id="modify"></div>
-										<div>{{ticket.type}}</div>
-									</div>
-								</div>
-							</td>
-						</p>
-						{% endif %}
+								<p>
+									<td>
+										<div class="tps-container">
+											<div class="colored-dot">
+												<div class="dot" id="bug"></div>
+												<div>{{ticket.type}}</div>
+											</div>
+										</div>
+									</td>
+								</p>
+								{% elif ticket.type == 'Feature' %}
+								<p>
+									<td>
+										<div class="tps-container">
+											<div class="colored-dot">
+												<div class="dot" id="feature"></div>
+												<div>{{ticket.type}}</div>
+											</div>
+										</div>
+									</td>
+								</p>
+								{% elif ticket.type == 'Modify' %}
+								<p>
+									<td>
+										<div class="tps-container">
+											<div class="colored-dot">
+												<div class="dot" id="modify"></div>
+												<div>{{ticket.type}}</div>
+											</div>
+										</div>
+									</td>
+								</p>
+								{% endif %}
 								<h6>Priority</h6>
 								{% if ticket.priority == 'High' %}
 								<p></p>
-								<div class="field-container">
+								<div class="tps-container">
 									<div class="colored-dot">
 										<div class="dot" id="high"></div>
 										<div>{{ticket.priority}}</div>
@@ -82,7 +83,7 @@
 								{% elif ticket.priority == 'Low' %}
 								<p></p>
 
-								<div class="field-container">
+								<div class="tps-container">
 									<div class="colored-dot">
 										<div class="dot" id="low"></div>
 										<div>{{ticket.priority}}</div>
@@ -154,8 +155,11 @@
 				{% endif %}
 				<div class="ticket-form">
 					<p style="padding-top: 20px; text-align: right">
-						Click <a class="ticket-link" href="{% url 'ticket-delete' ticket.id %}">here</a> to
-						delete this ticket.
+						Click
+						<a class="ticket-link" href="{% url 'ticket-delete' ticket.id %}"
+							>here</a
+						>
+						to delete this ticket.
 					</p>
 				</div>
 

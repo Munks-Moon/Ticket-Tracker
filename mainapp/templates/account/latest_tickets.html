@@ -26,7 +26,7 @@
 			{% if ticket.type == 'Bug' %}
 			<p>
 				<td>
-					<div class="field-container">
+					<div class="tps-container">
 						<div class="colored-dot">
 							<div class="dot" id="bug"></div>
 							<div>{{ticket.type}}</div>
@@ -37,7 +37,7 @@
 			{% elif ticket.type == 'Feature' %}
 			<p>
 				<td>
-					<div class="field-container">
+					<div class="tps-container">
 						<div class="colored-dot">
 							<div class="dot" id="feature"></div>
 							<div>{{ticket.type}}</div>
@@ -48,7 +48,7 @@
 			{% elif ticket.type == 'Modify' %}
 			<p>
 				<td>
-					<div class="field-container">
+					<div class="tps-container">
 						<div class="colored-dot">
 							<div class="dot" id="modify"></div>
 							<div>{{ticket.type}}</div>
@@ -59,7 +59,7 @@
 			{% endif %} {% if ticket.priority == 'High' %}
 			<p>
 				<td>
-					<div class="field-container">
+					<div class="tps-container">
 						<div class="colored-dot">
 							<div class="dot" id="high"></div>
 							<div>{{ticket.priority}}</div>
@@ -70,7 +70,7 @@
 			{% elif ticket.priority == 'Low' %}
 			<p>
 				<td>
-					<div class="field-container">
+					<div class="tps-container">
 						<div class="colored-dot">
 							<div class="dot" id="low"></div>
 							<div>{{ticket.priority}}</div>
