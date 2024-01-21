@@ -1,5 +1,4 @@
-{% extends 'base.html' %} {% load static%} {% load custom_tags %} {% block
-content %}
+{% extends 'base.html' %} {% load static%} {% load custom_tags %} {% block content %}
 <div>{% include 'sidebar.html' %}</div>
 
 <div class="flex-container">
@@ -24,7 +23,6 @@ content %}
 								<a class="ticket-link" href="{% url 'ticket-room' ticket.id %}"
 									>{{ticket.title}}</a
 								>
-								{% include 'ticket_details.html' %}
 							</td>
 						</p>
 						<p><td>{{ticket.id}}</td></p>

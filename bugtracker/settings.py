@@ -1,15 +1,13 @@
-
 from pathlib import Path
 import os
 
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'r2!fopgmjnw$4xv7!&d+@3kk_3(ccrw@og^^%a=uyp4vpl!=-y'
+SECRET_KEY = 'django-insecure-r2!fopgmjnw$4xv7!&d+@3kk_3(ccrw@og^^%a=uyp4vpl!=-y'
 
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ["tickettracker.com", "www.tickettracker.com"]
+ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -41,12 +39,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'bugtracker.urls'
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'mainapp/templates')],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -59,17 +55,12 @@ TEMPLATES = [
     },
 ]
 
-
 WSGI_APPLICATION = 'bugtracker.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'tickettrackerdb',
-        'USER': 'munks',
-        'PASSWORD': 'magnusw67',
-        'HOST': 'localhost', 
-        'PORT': '5432', 
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -96,7 +87,8 @@ USE_I18N = True
 
 USE_TZ = True
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -105,10 +97,3 @@ STATIC_URL = "static/"
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-SESSION_COOKIE_SECURE = True
-
-SECURE_SSL_REDIRECT = True
-
-CSRF_COOKIE_SCHEME = True
-

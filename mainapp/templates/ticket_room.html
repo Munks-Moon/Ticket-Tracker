@@ -1,5 +1,4 @@
-{% extends 'base.html' %} {% load static %} {% load crispy_forms_tags %} {%
-block content %}
+{% extends 'base.html' %} {% load static %} {% load crispy_forms_tags %} {% block content %}
 
 <div>{% include 'sidebar.html' %}</div>
 
@@ -72,24 +71,27 @@ block content %}
 								{% endif %}
 								<h6>Priority</h6>
 								{% if ticket.priority == 'High' %}
-								<p></p>
-								<div class="tps-container">
-									<div class="colored-dot">
-										<div class="dot" id="high"></div>
-										<div>{{ticket.priority}}</div>
-									</div>
-								</div>
-
+								<p>
+									<td>
+										<div class="tps-container">
+											<div class="colored-dot">
+												<div class="dot" id="high"></div>
+												<div>{{ticket.priority}}</div>
+											</div>
+										</div>
+									</td>
+								</p>
 								{% elif ticket.priority == 'Low' %}
-								<p></p>
-
-								<div class="tps-container">
-									<div class="colored-dot">
-										<div class="dot" id="low"></div>
-										<div>{{ticket.priority}}</div>
-									</div>
-								</div>
-
+								<p>
+									<td>
+										<div class="tps-container">
+											<div class="colored-dot">
+												<div class="dot" id="low"></div>
+												<div>{{ticket.priority}}</div>
+											</div>
+										</div>
+									</td>
+								</p>
 								{% endif %}
 								<h6>Status</h6>
 								<p>{% if ticket.status == 'Active' %}</p>
@@ -100,7 +102,7 @@ block content %}
 								{% elif ticket.status == 'Backlog' %}
 								<div class="ticket-backlog">Backlog</div>
 								{% endif %}
-								<h6>Attached File(s)</h6>
+								<h6 style="margin-top: 10px">Attached File(s)</h6>
 								{% if ticket.attachment %}
 								<p>
 									<a class="ticket-link" href="{{ ticket.attachment.url }}"

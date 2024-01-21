@@ -18,6 +18,8 @@ urlpatterns = [
     path('all-messages/', views.all_messages, name='all-messages'),
     path('sent-messages/', views.sent_messages, name='sent-messages'),
     path('ticket-room/<str:pk>/delete/', views.delete_ticket, name='ticket-delete'),
+    path('demo_login/', views.demo_login, name='demo_login'),
+    path('reset-data/', views.reset_data, name='reset-data'),
 ]
 
 if settings.DEBUG:

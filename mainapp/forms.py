@@ -14,7 +14,13 @@ class TicketSubmission(forms.ModelForm):
         model = Ticket
         fields = ['title', 'description', 'author', 'type', 'priority', 'participants', 'attachment']
         widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'class': 'form-control'}),
+            'author': forms.Select(attrs={'class': 'form-control'}),
+            'type': forms.Select(attrs={'class': 'form-control'}),
+            'priority': forms.Select(attrs={'class': 'form-control'}),
             'participants': forms.Select(attrs={'class': 'form-control'}),
+            'attachment': forms.FileInput(attrs={'class': 'form-control'}),
         }
         
 class SendMessage(forms.ModelForm):
@@ -28,7 +34,9 @@ class SendMessage(forms.ModelForm):
             'body': 'Message',
         }
         widgets = {
-            'body': forms.Textarea(attrs={'rows': 5}),
+            'recipient': forms.Select(attrs={'class': 'custom-select', 'style': 'width: 300px;'}),  # Change size and add class
+            'subject': forms.TextInput(attrs={'placeholder': 'Enter subject here', 'style': 'width: 200px;'}),  # Add placeholder and change size
+            'body': forms.Textarea(attrs={'rows': 5, 'placeholder': 'Write your description here'}), 
         }
 
 class TicketUpdate(forms.ModelForm):
@@ -37,7 +45,6 @@ class TicketUpdate(forms.ModelForm):
         fields = ['status', 'comments']
 
 class TicketInitiate(forms.ModelForm):
-    
     class Meta:
         model = Ticket
         fields = ['status']

@@ -9,6 +9,7 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
+from django.core.management import call_command
 
 # Account ----
 
@@ -175,7 +176,6 @@ def message(request, pk):
     message = get_object_or_404(Message, id=pk)
     return render(request, 'message_room.html', {'message': message})
 
-
 @login_required
 def send_message(request):
     ticket = Ticket.objects.all()
@@ -211,7 +211,10 @@ def send_message(request):
 @login_required
 def dashboard(request):
     tickets = Ticket.objects.all()
-    recent_ticket = Ticket.objects.filter(participants=request.user).latest('created')
+    try:
+        recent_ticket = Ticket.objects.filter(participants=request.user).latest('created')
+    except Ticket.DoesNotExist:
+        recent_ticket = None
     all_users= get_user_model().objects.all().exclude(id=request.user.id)
     if request.method == 'POST':
         form = SendMessage(request.POST)
@@ -262,10 +265,10 @@ def logoutUser(request):
     logout(request)
     return redirect('login')
 
-# Demo ----
+# DEMO
 
 def demo_login(request):
-
+    
     demo_username = 'demo_user'
     demo_password = 'demopassword'
 
@@ -273,8 +276,19 @@ def demo_login(request):
         user = authenticate(request, username=demo_username, password=demo_password)
         if user is not None:
             login(request, user)
-
+        
             return redirect('dashboard')
         else:
-
+        
             return redirect('login')
+        
+def reset_data(request):
+    if request.user.is_superuser:
+        
+        call_command('reset_data')
+        messages.success(request, 'Data has been reset successfully.')
+        return redirect('login')
+    else:
+        return HttpResponse("You are not authorized to reset data.")
+    
+    

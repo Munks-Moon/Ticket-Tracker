@@ -12,7 +12,6 @@ class Ticket(models.Model):
         COMPLETE = 'Complete', 'Complete'
         BACKLOG = 'Backlog', 'Backlog'
 
-
     class Priority(models.TextChoices):
         HIGH = 'High', 'High'
         LOW = 'Low', 'Low'
@@ -37,7 +36,6 @@ class Ticket(models.Model):
     objects = models.Manager()
     published = PublishedManager()
     
-
     class Meta:
         ordering = ['-created']
         indexes = [
@@ -62,11 +60,6 @@ class Message(models.Model):
     body = models.TextField()
     sent_at = models.DateTimeField(auto_now_add=True)
     read = models.BooleanField(default=False)
-    
-
-    def mark_as_read(self):
-        self.read = True
-        self.save()
 
     class Meta:
         ordering = ['-sent_at']

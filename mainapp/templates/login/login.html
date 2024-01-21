@@ -10,11 +10,11 @@
 	</ul>
 	{% endif %}
 </div>
-<div style="text-align: center">
+<div class="demo-container" style="text-align: center;">
 	<h3>Click here for demo version</h3>
 	<form method="post" action="{% url 'demo_login' %}">
 		{% csrf_token %}
-		<button type="submit" class="demo-button">Demo</button>
+		<button class="demo-button" type="submit">Demo</button>
 	</form>
 </div>
 <div id="login-box">
